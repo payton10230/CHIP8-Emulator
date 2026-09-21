@@ -17,6 +17,7 @@ class CPU {
     public:
         CPU(); //Constructor
         void LoadProgram(uint8_t* program, int size); //Load a program into memory
+        uint8_t getMemory(uint16_t val);
 };
 
 #endif
