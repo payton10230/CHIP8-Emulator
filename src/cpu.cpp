@@ -27,3 +27,20 @@ uint8_t CPU::getMemory(uint16_t val) {
 uint16_t CPU::Fetch() {
     return (Memory[PC]<<8) | Memory[PC+1];
 }
+
+void CPU::Decode(uint16_t val) {
+    int first = (val & 0xF000) >> 12;
+//check implementation when next available
+    switch (first) {
+        case 0x6:
+            int x = (val & 0x0F00) >> 8;
+            int nn = val & 0x00FF;
+            V[x] = nn;
+            break;
+        default:
+            cout<<"Not Found.\n";
+            break;
+    }
+
+    
+}

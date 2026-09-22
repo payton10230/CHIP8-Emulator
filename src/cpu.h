@@ -19,6 +19,7 @@ class CPU {
         void LoadProgram(uint8_t* program, int size); //Load a program into memory
         uint8_t getMemory(uint16_t val); //getMemory for tests
         uint16_t Fetch(); //Fetch PC and PC+1 memory and combines them
+        void Decode(uint16_t instruction); //Decode to set V[X] = NN
 };
 
 #endif
