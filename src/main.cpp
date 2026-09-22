@@ -13,13 +13,12 @@ int main(int argc, char *argv[]) {
     
     CPU cpu = CPU();
     cpu.LoadProgram(testProgram, tpLength);
-    for (int i = 0x200; i<0x200+tpLength; i++) {
-        cout<<hex<<(int)cpu.getMemory(i)<<" ";
-    }
 
     cout<<"running\n";
-    uint16_t instruction = cpu.Fetch();
-    cout<<hex<<instruction<<endl;
+
+    cpu.Cycle();
+    cout<<hex<<(int)cpu.getRegister(0xA)<<endl;
+    cout<<hex<<cpu.getPC()<<endl;
 
     return 0;
 }

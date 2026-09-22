@@ -2,6 +2,7 @@
 #ifndef CPU_H
 #define CPU_H
 #include <cstdint>
+#include <iostream>
 
 using namespace std;
 
@@ -17,9 +18,14 @@ class CPU {
     public:
         CPU(); //Constructor
         void LoadProgram(uint8_t* program, int size); //Load a program into memory
-        uint8_t getMemory(uint16_t val); //getMemory for tests
         uint16_t Fetch(); //Fetch PC and PC+1 memory and combines them
         void Decode(uint16_t instruction); //Decode to set V[X] = NN
+        void Cycle(); //Cycle using Fetch() and Decode()
+
+        // GETTERS (CURRENTLY FOR TESTING)
+        uint8_t getMemory(uint16_t mem); 
+        uint8_t getRegister(uint8_t index);
+        uint16_t getPC();
 };
 
 #endif
