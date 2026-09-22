@@ -18,6 +18,8 @@ int main(int argc, char *argv[]) {
     }
 
     cout<<"running\n";
+    uint16_t instruction = cpu.Fetch();
+    cout<<hex<<instruction<<endl;
 
     return 0;
 }

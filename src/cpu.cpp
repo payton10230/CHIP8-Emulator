@@ -23,3 +23,7 @@ void CPU::LoadProgram(uint8_t* program, int size) {
 uint8_t CPU::getMemory(uint16_t val) {
     return Memory[val];
 }
+
+uint16_t CPU::Fetch() {
+    return (Memory[PC]<<8) | Memory[PC+1];
+}
