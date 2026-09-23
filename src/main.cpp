@@ -14,18 +14,13 @@ int main(int argc, char *argv[]) {
     int tpLength = sizeof(testProgram) / sizeof(testProgram[0]);
     
     CPU cpu = CPU();
-    
-    cpu.Decode(makeXNN(0x6,0xA,0x3F));
-    cout<<hex<<(int)cpu.getRegister(0xA)<<endl;
+    cpu.LoadProgram(testProgram, tpLength);
 
-    cpu.Decode(makeXNN(0x7,0xA,0x01));
-    cout<<hex<<(int)cpu.getRegister(0xA)<<endl;
+    cpu.Decode(makeNNN(0x2,0x300));
+    cout<<hex<<cpu.getPC()<<endl;
 
-    cpu.Decode(makeNNN(0xA, 0x234));
-    cout<<hex<<(int)cpu.getI()<<endl;
-
-    cpu.Decode(makeXYN(0x5,0xA,0xB,0x0));
-    cout<<hex<<(int)cpu.getPC()<<endl;
+    cpu.Decode(makeXNN(0x0, 0, 0xGOtEE));
+    cout<<hex<<cpu.getPC()<<endl;
 
 
 

@@ -33,6 +33,13 @@ void CPU::Decode(uint16_t val) {
             PC = nnn;
             break;
         }
+        case 0x2: {
+            int nnn = val & 0x0FFF;
+            Stack[SP] = PC+2;
+            SP++;
+            PC = nnn;
+            break;
+        }
         case 0x3: {
             int x = (val & 0x0F00) >> 8;
             int nn = val & 0x00FF;
@@ -84,6 +91,19 @@ void CPU::Decode(uint16_t val) {
                 PC+=4;
             } else {
                 PC+=2;
+            }
+            break;
+        }
+        case 0x0: {
+            int nn = val & 0x00FF;
+            switch (nn) {
+                case 0xEE: {
+                    SP--;
+                    PC = Stack[SP];
+                    break;
+                    }
+                default:
+                    break;
             }
             break;
         }
