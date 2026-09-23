@@ -116,3 +116,7 @@ void CPU::Cycle() {
     uint16_t CPU::getPC() {
         return PC;
     }
+
+    uint16_t CPU::getI() {
+        return I;
+    }

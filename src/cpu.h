@@ -26,6 +26,7 @@ class CPU {
         uint8_t getMemory(uint16_t mem); 
         uint8_t getRegister(uint8_t index);
         uint16_t getPC();
+        uint16_t getI();
 };
 
 #endif
