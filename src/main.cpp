@@ -16,9 +16,20 @@ int main(int argc, char *argv[]) {
 
     cout<<"running\n";
 
-    cpu.Cycle();
-    cout<<hex<<(int)cpu.getRegister(0xA)<<endl;
-    cout<<hex<<cpu.getPC()<<endl;
+    uint8_t testEqual[] = {0x60, 0x05, 0x30, 0x05};
+    CPU cpu1 = CPU();
+    cpu1.LoadProgram(testEqual, 4);
+    cpu1.Cycle();
+    cpu1.Cycle();
+    cout<<hex<<cpu1.getPC()<<endl;
+
+    uint8_t testNotEqual[] = {0x40, 0x05, 0x30, 0x09};
+    CPU cpu2 = CPU();
+    cpu2.LoadProgram(testNotEqual, 4);
+    cpu2.Cycle();
+    cpu2.Cycle();
+    cout<<hex<<cpu2.getPC()<<endl;
+
 
     return 0;
 }

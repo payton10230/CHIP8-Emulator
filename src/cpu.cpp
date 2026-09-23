@@ -33,10 +33,63 @@ void CPU::Decode(uint16_t val) {
             PC = nnn;
             break;
         }
+        case 0x3: {
+            int x = (val & 0x0F00) >> 8;
+            int nn = val & 0x00FF;
+            if (V[x] == nn) {
+                PC+=4;
+            } else {
+                PC+=2;
+            }
+            break;
+        }
+        case 0x4: {
+            int x = (val & 0x0F00) >> 8;
+            int nn = val & 0x00FF;
+            if (V[x] != nn) {
+                PC+=4;
+            } else {
+                PC+=2;
+            }
+            break;
+        }
+        case 0x5: {
+            int x = (val & 0x0F00) >> 8;
+            int y = (val & 0x00F0) >> 4;
+            if (V[x] == V[y]) {
+                PC+=4;
+            } else {
+                PC+=2;
+            }
+            break;
+        }
         case 0x6: {
             int x = (val & 0x0F00) >> 8;
             int nn = val & 0x00FF;
             V[x] = nn;
+            PC+=2;
+            break;
+        }
+        case 0x7: {
+            int x = (val & 0x0F00) >> 8;
+            int nn = val & 0x00FF;
+            V[x] += nn;
+            PC+=2;
+            break;
+        }
+        case 0x9: {
+            int x = (val & 0x0F00) >> 8;
+            int y = (val & 0x00F0) >> 4;
+            if (V[x]!=V[y]) {
+                PC+=4;
+            } else {
+                PC+=2;
+            }
+            break;
+        }
+        case 0xA: {
+            int nnn = val & 0x0FFF;
+            I = nnn;
             PC+=2;
             break;
         }
